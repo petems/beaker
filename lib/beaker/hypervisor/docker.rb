@@ -254,9 +254,9 @@ module Beaker
           EOF
         when /opensuse/, /sles/
           dockerfile += <<-EOF
-            RUN zypper -n in openssh #{Beaker::HostPrebuiltSteps::SLES_PACKAGES.join(' ')}
-            RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
-            RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+            RUN zypper -n in #{Beaker::HostPrebuiltSteps::SLES_PACKAGES.join(' ')}
+            RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -f
+            RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -f
             RUN sed -ri 's/^#?UsePAM .*/UsePAM no/' /etc/ssh/sshd_config
           EOF
         else
